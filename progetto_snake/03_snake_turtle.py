@@ -30,7 +30,7 @@ snake=[(5,10), (6,10)]
 
 size=CELL-2
 
-window.screensize(WIDTH, HEIGHT)
+window.setup(WIDTH, HEIGHT)
 
 #Scopo: Converte coordinate logiche della griglia in coordinate pixel sullo schermo.
 #Come funziona:
@@ -43,10 +43,10 @@ def to_xy(cell):
     x_c, y_c= cell
 
     #Calcolo del centro della cella nel punto x
-    x_p= x_c*CELL+CELL/2
+    x_p= -(WIDTH/2)+(x_c*CELL)+CELL/2
 
     #Calcolo del centro della cella nel punto y
-    y_p= y_c*CELL+CELL/2
+    y_p= -(HEIGHT/2)+(y_c*CELL)+CELL/2
     return (x_p,y_p)
 
 #Scopo: Disegna un quadrato centrato in una posizione.
