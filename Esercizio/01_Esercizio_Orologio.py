@@ -11,16 +11,20 @@ ore=12
 #distanza in gradi tra i rettangoli
 deg= 360/ore
 
+altezza=20
+
+window = turtle.Screen()
+window.bgcolor("yellow")
 
 
 def draw_rect(t, altezza, larghezza):
     """
     Creo un rettangolo di dimensioni 
     
-    :param t: Tartauga da usare per disegnare
-    :param altezza: Description
-    :param larghezza: Description
     """
+    t.fillcolor("orange")
+
+
     t.forward(larghezza)
     t.right(90)
     t.forward(altezza)
@@ -29,14 +33,19 @@ def draw_rect(t, altezza, larghezza):
     t.right(90)
     t.forward(altezza)
     t.right(90)
+    
+    t.end_fill()
 
-
+#Disegna 12 rettangoli in senso antiorario 
+#Da centrare!!!
 
 for _ in range(ore):
+    
     t.up()
     t.forward(raggio)
     
-
+    
+    
     t.down()
     draw_rect(t, 20,40)
 
@@ -44,6 +53,7 @@ for _ in range(ore):
     t.goto(0,0)
     t.left(deg)
 
+    
 
 
 
