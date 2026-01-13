@@ -14,8 +14,15 @@
 
 import turtle as t
 
-
+#Creo una finestra di turtle
 window= t.Screen()
+
+#Do un nome alla finestra
+window.title('SNAKE')
+
+#blocco il display automatico dell'animazione
+window.tracer(0)
+
 
 # Rappresento la finestra che conterra il gioco
 #
@@ -26,10 +33,10 @@ CELL=30
 GRID=20
 WIDTH= HEIGHT = GRID * CELL
 
-snake=[(5,10), (6,10)]
-
+#Dimensione del quadrato del serpente
 size=CELL-2
 
+#Dico al programma òe dimensioni della finestra
 window.setup(WIDTH, HEIGHT)
 
 #Scopo: Converte coordinate logiche della griglia in coordinate pixel sullo schermo.
@@ -57,7 +64,8 @@ def to_xy(cell):
 #Disegna 4 lati del quadrato ruotando di 90° dopo ogni lato
 
 def draw_cell(center, size):
-    pen = t.Turtle()
+    pen = t.Turtle(visible=False)
+    #Center è una tupla, divido la tupla in due variabili
     x_centro, y_centro= center
     pen.up()
     pen.goto(x_centro - size/2, y_centro - size/2)
@@ -66,11 +74,29 @@ def draw_cell(center, size):
         pen.forward(size)
         pen.left(90)
 
-for cell in snake:
-    center = to_xy(cell)
-    draw_cell(center, size)
+#Disegno serpente
+def draw_snake(s):
+    for cell in s:
+        center = to_xy(cell)
+        draw_cell(center, size)
+
+def move_snake(snake, direction):
+    direction=[
+        #dx     #sx
+        (1,0), (-1,0), 
+        #su     #giù
+        (0,1), (0,-1)
+    ]
 
 
 
+#Il nostro serpente è rappreesentato da una lista di tuple (x,y)
+snake=[(4,10), (5,10), (6,10)]
+
+draw_snake(snake)
+
+#Aggiorno l'animazione della finestra
+window.update()
+#aspetto la chiusura della finestra
 t.done()
 
