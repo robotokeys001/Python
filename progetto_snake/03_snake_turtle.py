@@ -23,7 +23,13 @@ window.title('SNAKE')
 #blocco il display automatico dell'animazione
 window.tracer(0)
 
-
+dirs={
+    "LEFT" : (-1,0), #->sinistra
+    "RIGHT" : (1,0), #->destra
+    "UP" : (0,1), #->su
+    "DOWN" : (0,-1) #->giù
+}
+     
 # Rappresento la finestra che conterra il gioco
 #
 # CELL: dimensione di ogni cella (30 pixel)
@@ -81,17 +87,31 @@ def draw_snake(s):
         draw_cell(center, size)
 
 def move_snake(snake, direction):
-    direction=[
-        #dx     #sx
-        (1,0), (-1,0), 
-        #su     #giù
-        (0,1), (0,-1)
-    ]
+    #Muovo il mio serpente seguendo la direzione, direction
+    #(1,0)->destra
+    #(-1,0)->sinistra
+    #(0,1)->su
+    #(0,-1)->giù
 
+    #Estrapolo i vettori di movimento
+    dx, dy= direction
+
+    #Estrapolo la posizione della testa
+    head_x, head_y= snake[0]
+
+    #Calcolo la posizione della nuova testa
+    new_head= (head_x + dx, head_y + dy)
+
+    #Creo il nuovo snake
+    new_snake = [new_head] + snake[:-1]
+    return new_snake
 
 
 #Il nostro serpente è rappreesentato da una lista di tuple (x,y)
 snake=[(4,10), (5,10), (6,10)]
+
+snake = move_snake(snake, dirs["UP"])
+snake = move_snake(snake, dirs["LEFT"])
 
 draw_snake(snake)
 
